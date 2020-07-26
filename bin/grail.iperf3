@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# mount /proc and /sys (/dev is automounted by the kernel)
+mount -t proc proc proc/
+mount -t sysfs sys sys/
+
+# configure network
+ifconfig eth0 10.0.0.1 netmask 255.255.255.0
+
+# start the iPerf3 client
+sleep 2
+iperf3 -c 10.0.0.2
